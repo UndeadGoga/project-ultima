@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://h0622s5pwnc7"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_l5mc5"]
+[ext_resource type="Texture2D" uid="uid://bm5xikb6h4bbe" path="res://Assets/Tiles/tile_0097.png" id="2_lvtjx"]
+[ext_resource type="Texture2D" uid="uid://clupjxqjbp6bn" path="res://Assets/circle.png" id="3_xjaht"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vi7s"]
+size = Vector2(14, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tb3o3"]
+size = Vector2(16, 16.9412)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_f5prv"]
+polygon = PackedVector2Array(-7, 7, 7, 7, 7, 8, -7, 8)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_l5mc5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4vi7s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -0.5)
+scale = Vector2(1, 1.0625)
+texture = ExtResource("2_lvtjx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
+position = Vector2(0, -0.470588)
+shape = SubResource("RectangleShape2D_tb3o3")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(4.76837e-06, 2)
+scale = Vector2(0.09, 0.0975)
+energy = 0.5
+texture = ExtResource("3_xjaht")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_f5prv")
